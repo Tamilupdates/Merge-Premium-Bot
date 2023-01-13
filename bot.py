@@ -330,7 +330,7 @@ async def files_handler(c: Client, m: Message):
         if len(queueDB.get(user_id)["videos"]) == 0:
             queueDB.get(user_id)["videos"].append(m.id)
             if len(queueDB.get(user_id)["videos"])==1:
-            reply_ = await editable.edit(
+                reply_ = await editable.edit(
                 text="Now, Send all the audios you want to merge",
                 reply_markup=InlineKeyboardMarkup(
                     bMaker.makebuttons(["Cancel"], ["cancel"])
@@ -409,7 +409,7 @@ async def photo_handler(c: Client, m: Message):
     msg = await m.reply_text("Saving Thumbnail. . . .", quote=True)
     user.thumbnail = thumbnail
     user.set()
-    # await database.saveThumb(m.from_user.id, thumbnail)
+    await database.saveThumb(m.from_user.id, thumbnail)
     LOCATION = f"downloads/{m.from_user.id}_thumb.jpg"
     await c.download_media(message=m, file_name=LOCATION)
     await msg.edit_text(text="✅ Custom Thumbnail Saved!")
