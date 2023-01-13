@@ -1,11 +1,10 @@
-# (c) dishapatel010
 import pickle
 import os.path
 import os
 import threading
 import time
 from helpers.database import setUserMergeSettings, getUserMergeSettings
-# from magic import Magic
+from magic import Magic
 SIZE_UNITS = ["B", "KB", "MB", "GB", "TB", "PB"]
 
 
@@ -64,7 +63,7 @@ class UserSettings(object):
         self.thumbnail = None
         self.banned:bool = False
         self.get()
-        # def __init__(self,uid:int,name:str,merge_mode:int=1,edit_metadata=False) -> None:
+        def __init__(self,uid:int,name:str,merge_mode:int=1,edit_metadata=False) -> None:
 
     def get(self):
         try:
@@ -102,3 +101,4 @@ class UserSettings(object):
             thumbnail=self.thumbnail,
         )
         return self.get()
+

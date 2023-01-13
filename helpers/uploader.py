@@ -22,7 +22,7 @@ async def uploadVideo(
     file_size,
     upload_mode: bool,
 ):
-    # Report your errors in telegram group (@yo_codes).
+    # Report your errors in telegram group (@KPSBots).
     if Config.IS_PREMIUM:
         sent_ = None
         prog = Progress(cb.from_user.id, c, cb.message)
@@ -63,7 +63,7 @@ async def uploadVideo(
                     message_id=sent_.id,
                     caption=f"`{merged_video_path.rsplit('/',1)[-1]}`",
                 )
-                # await sent_.delete()
+                await sent_.delete()
     else:
         try:
             sent_ = None
@@ -141,3 +141,4 @@ async def uploadFiles(
     except:
         1    
     1
+

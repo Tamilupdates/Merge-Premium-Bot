@@ -7,7 +7,7 @@ from helpers.utils import UserSettings
 
 @mergeApp.on_message(filters.command(["settings"]))
 async def f1(c: mergeApp, m: Message):
-    # setUserMergeMode(uid=m.from_user.id,mode=1)
+    setUserMergeMode(uid=m.from_user.id,mode=1)
     replay = await m.reply(text="Please wait", quote=True)
     usettings = UserSettings(m.from_user.id, m.from_user.first_name)
     await userSettings(
@@ -76,6 +76,6 @@ async def userSettings(
         usettings.edit_metadata = False
         usettings.thumbnail = None
         await userSettings(editable, uid, fname, lname, usettings)
-    # await asyncio.sleep(10)
-    # await c.delete_messages(chat_id=editable.chat.id, message_ids=[res.id-1,res.id])
+    await asyncio.sleep(10)
+    await c.delete_messages(chat_id=editable.chat.id, message_ids=[res.id-1,res.id])
     return

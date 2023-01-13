@@ -21,7 +21,7 @@ from pyrogram.types import CallbackQuery
 
 async def mergeNow(c: Client, cb: CallbackQuery, new_file_name: str):
     omess = cb.message.reply_to_message
-    # LOGGER.info(omess.id)
+    LOGGER.info(omess.id)
     vid_list = list()
     sub_list = list()
     sIndex = 0
@@ -30,7 +30,7 @@ async def mergeNow(c: Client, cb: CallbackQuery, new_file_name: str):
     list_message_ids = queueDB.get(cb.from_user.id)["videos"]
     list_message_ids.sort()
     list_subtitle_ids = queueDB.get(cb.from_user.id)["subtitles"]
-    # list_subtitle_ids.sort()
+    list_subtitle_ids.sort()
     LOGGER.info(Config.IS_PREMIUM)
     LOGGER.info(f"Videos: {list_message_ids}")
     LOGGER.info(f"Subs: {list_subtitle_ids}")
@@ -173,7 +173,7 @@ chat_id=cb.from_user.id, message_ids=list_message_ids ):
         thumb_id = user.thumbnail
         if thumb_id is None:
             raise Exception
-        # thumb_id = await database.getThumb(cb.from_user.id)
+        thumb_id = await database.getThumb(cb.from_user.id)
         video_thumbnail = f"downloads/{str(cb.from_user.id)}_thumb.jpg"
         await c.download_media(message=str(thumb_id), file_name=video_thumbnail)
     except Exception as err:
@@ -216,3 +216,4 @@ chat_id=cb.from_user.id, message_ids=list_message_ids ):
     queueDB.update({cb.from_user.id: {"videos": [], "subtitles": [], "audios": []}})
     formatDB.update({cb.from_user.id: None})
     return
+
