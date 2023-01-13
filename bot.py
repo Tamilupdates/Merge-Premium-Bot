@@ -54,14 +54,14 @@ class MergeBot(Client):
     def start(self):
         super().start()
         try:
-            self.send_message(chat_id=int(Config.OWNER), text="<b>Bot Started!</b>")
+            self.send_message(chat_id=int(Config.OWNER), text="<b>😎 Bot Started ❗</b>")
         except Exception as err:
             LOGGER.error("Boot alert failed! Please start bot in PM")
         return LOGGER.info("Bot Started!")
 
     def stop(self):
         super().stop()
-        return LOGGER.info("Bot Stopped")
+        return LOGGER.info("😎 Bot Stopped ⛔")
 
 
 mergeApp = MergeBot(
@@ -71,7 +71,7 @@ mergeApp = MergeBot(
     bot_token=Config.BOT_TOKEN,
     workers=300,
     plugins=dict(root="plugins"),
-    app_version="5.0+yash-mergebot",
+    app_version="5.0+mergebot",
 )
 
 
@@ -94,7 +94,7 @@ async def loginHandler(c: Client, m: Message):
     if user.user_id == int(Config.OWNER):
         user.allowed = True
     if user.allowed:
-        await m.reply_text(text=f"**Dont Spam**\n  ⚡ You can use me!!", quote=True)
+        await m.reply_text(text=f"**Don't Spam**\n  ⚡ You can use me!!", quote=True)
     else:
         try:
             passwd = m.text.split(" ", 1)[1]
@@ -104,7 +104,7 @@ async def loginHandler(c: Client, m: Message):
         if passwd == Config.PASSWORD:
             user.allowed = True
             await m.reply_text(
-                text=f"**Login passed ✅,**\n  ⚡ Now you can use me!!", quote=True
+                text=f"**Login passed ✅,**\n ⚡ Now you can use me!!", quote=True
             )
         else:
             await m.reply_text(
@@ -136,9 +136,9 @@ async def stats_handler(c: Client, m: Message):
     stats = (
         f"<b>╭《🌐 BOT STATISTICS 🌐》</b>\n" \
         f"<b>├ ⏳ Bot Uptime : {currentTime}</b>\n"
-       	f'<b>├ 💾 Disk:</b> [ {total} ] {disk}%\n'\
-        f"<b>├ 🖥️ CPU:</b> [ {t_core} Cores ] {cpuUsage}%\n"\
-        f"<b>├ 🎮 RAM:</b> [ {mem_t} ] {mem_p}%\n"\
+       	f'<b>├ 💾 Disk:</b> [ {free} / {total} ] {disk}%\n'\
+        f"<b>├ 🖥️ CPU:</b> [ {p_core} / {t_core} Cores ] {cpuUsage}%\n"\
+        f"<b>├ 🎮 RAM:</b> [ {mem_a} / {mem_t} ] {mem_p}%\n"\
 	    f"<b>├ 🔺 Upload Data:</b> {sent}\n"\
         f"<b>╰ 🔻 Download Data:</b> {recv}\n\n"
     )
@@ -249,13 +249,13 @@ async def files_handler(c: Client, m: Message):
             quote=True,
         )
         return
-    if MERGE_MODE.get(user_id) is None:
-        userMergeMode = database.getUserMergeSettings(user_id)
-        if userMergeMode is not None:
-            MERGE_MODE[user_id] = userMergeMode
-        else:
-            database.setUserMergeMode(uid=user_id, mode=1)
-            MERGE_MODE[user_id] = 1
+    # if MERGE_MODE.get(user_id) is None:
+    #     userMergeMode = database.getUserMergeSettings(user_id)
+    #     if userMergeMode is not None:
+    #         MERGE_MODE[user_id] = userMergeMode
+    #     else:
+    #         database.setUserMergeMode(uid=user_id, mode=1)
+    #         MERGE_MODE[user_id] = 1
 
     if user.merge_mode == 1:
 
@@ -287,9 +287,9 @@ async def files_handler(c: Client, m: Message):
             queueDB.get(user_id)["videos"].append(m.id)
             queueDB.get(m.from_user.id)["subtitles"].append(None)
 
-            LOGGER.info(
-                queueDB.get(user_id)["videos"], queueDB.get(m.from_user.id)["subtitles"]
-            )
+            # LOGGER.info(
+            #     queueDB.get(user_id)["videos"], queueDB.get(m.from_user.id)["subtitles"]
+            # )
 
             if len(queueDB.get(user_id)["videos"]) == 1:
                 reply_ = await editable.edit(
@@ -306,7 +306,7 @@ async def files_handler(c: Client, m: Message):
                 await c.delete_messages(
                     chat_id=m.chat.id, message_ids=replyDB.get(user_id)
                 )
-            if len(queueDB.get(user_id)["videos"]) == 15:
+            if len(queueDB.get(user_id)["videos"]) == 10:
                 MessageText = "Okay, Now Just Press **Merge Now** Button Plox!"
             markup = await makeButtons(c, m, queueDB)
             reply_ = await editable.edit(
@@ -329,8 +329,8 @@ async def files_handler(c: Client, m: Message):
             queueDB.update({user_id: {"videos": [], "subtitles": [], "audios": []}})
         if len(queueDB.get(user_id)["videos"]) == 0:
             queueDB.get(user_id)["videos"].append(m.id)
-            if len(queueDB.get(user_id)["videos"])==1:
-                reply_ = await editable.edit(
+            # if len(queueDB.get(user_id)["videos"])==1:
+            reply_ = await editable.edit(
                 text="Now, Send all the audios you want to merge",
                 reply_markup=InlineKeyboardMarkup(
                     bMaker.makebuttons(["Cancel"], ["cancel"])
@@ -365,8 +365,8 @@ async def files_handler(c: Client, m: Message):
             queueDB.update({user_id: {"videos": [], "subtitles": [], "audios": []}})
         if len(queueDB.get(user_id)["videos"]) == 0:
             queueDB.get(user_id)["videos"].append(m.id)
-            if len(queueDB.get(user_id)["videos"])==1:
-                reply_ = await editable.edit(
+            # if len(queueDB.get(user_id)["videos"])==1:
+            reply_ = await editable.edit(
                 text="Now, Send all the subtitles you want to merge",
                 reply_markup=InlineKeyboardMarkup(
                     bMaker.makebuttons(["Cancel"], ["cancel"])
@@ -398,18 +398,18 @@ async def files_handler(c: Client, m: Message):
 async def photo_handler(c: Client, m: Message):
     user = UserSettings(m.chat.id, m.from_user.first_name)
     if m.from_user.id != int(Config.OWNER):
-        if not user.allowed:
+        if user.allowed is False:
             res = await m.reply_text(
                 text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Unfortunately you can't use me\n\n**🧑‍💻 Contact: @{Config.OWNER_USERNAME}** ",
                 quote=True,
             )
-        del user
-        return
+            del user
+            return
     thumbnail = m.photo.file_id
     msg = await m.reply_text("Saving Thumbnail. . . .", quote=True)
     user.thumbnail = thumbnail
     user.set()
-    await database.saveThumb(m.from_user.id, thumbnail)
+    # await database.saveThumb(m.from_user.id, thumbnail)
     LOCATION = f"downloads/{m.from_user.id}_thumb.jpg"
     await c.download_media(message=m, file_name=LOCATION)
     await msg.edit_text(text="✅ Custom Thumbnail Saved!")
@@ -479,7 +479,7 @@ async def about_handler(c: Client, m: Message):
 👨‍💻 ᴍᴇʀɢᴇᴅ ᴠɪᴅᴇᴏ ᴘʀᴇsᴇʀᴠᴇs ᴀʟʟ sᴛʀᴇᴀᴍs ᴏғ ᴛʜᴇ ғɪʀsᴛ ᴠɪᴅᴇᴏ ʏᴏᴜ sᴇɴᴅ (ɪ.ᴇ ᴀʟʟ ᴀᴜᴅɪᴏᴛʀᴀᴄᴋs/sᴜʙᴛɪᴛʟᴇs)
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 **ғᴇᴀᴛᴜʀᴇs**
-🔰 ᴍᴇʀɢᴇ ᴜᴘᴛᴏ 15 ᴠɪᴅᴇᴏ ɪɴ ᴏɴᴇ 
+🔰 ᴍᴇʀɢᴇ ᴜᴘᴛᴏ 𝟷5 ᴠɪᴅᴇᴏ ɪɴ ᴏɴᴇ 
 🔰 ᴜᴘʟᴏᴀᴅ ᴀs ᴅᴏᴄᴜᴍᴇɴᴛs/ᴠɪᴅᴇᴏ
 🔰 ᴄᴜsᴛᴏᴍs ᴛʜᴜᴍʙɴᴀɪʟ sᴜᴘᴘᴏʀᴛ
 🔰 ᴜsᴇʀs ᴄᴀɴ ʟᴏɢɪɴ ᴛᴏ ʙᴏᴛ ᴜsɪɴɢ ᴘᴀssᴡᴏʀᴅ
@@ -513,18 +513,14 @@ async def show_thumbnail(c: Client, m: Message):
     try:
         user = UserSettings(m.from_user.id, m.from_user.first_name)
         thumb_id = user.thumbnail
-        LOCATION = f"downloads/{str(m.from_user.id)}_thumb.jpg"
-        if os.path.exists(LOCATION):
-            await m.reply_photo(
-                photo=LOCATION, caption="🖼️ Your custom thumbnail", quote=True
-            )
-        elif thumb_id is not None :
-            await c.download_media(message=str(thumb_id), file_name=LOCATION)
-            await m.reply_photo(
-                photo=LOCATION, caption="🖼️ Your custom thumbnail", quote=True
-            )
-        else: 
+        LOCATION = f"downloads/{m.from_user.id}_thumb.jpg"
+        await c.download_media(message=str(thumb_id), file_name=LOCATION)
+        if os.path.exists(LOCATION) is False:
             await m.reply_text(text="❌ Custom thumbnail not found", quote=True)
+        else:
+            await m.reply_photo(
+                photo=LOCATION, caption="🖼️ Your custom thumbnail", quote=True
+            )
         del user
     except Exception as err:
         LOGGER.info(err)
@@ -539,9 +535,8 @@ async def delete_thumbnail(c: Client, m: Message):
         user.set()
         if os.path.exists(f"downloads/{str(m.from_user.id)}"):
             os.remove(f"downloads/{str(m.from_user.id)}")
-            await m.reply_text("✅ Deleted Sucessfully", quote=True)
-            del user
-        else: raise Exception("Thumbnail file not found")
+        await m.reply_text("✅ Deleted Sucessfully", quote=True)
+        del user
     except Exception as err:
         await m.reply_text(text="❌ Custom thumbnail not found", quote=True)
 
@@ -725,9 +720,9 @@ except KeyError:
 
 
 if __name__ == "__main__":
-    with mergeApp:
-        bot:User = mergeApp.get_me()
-        bot_username = bot.username
+    # with mergeApp:
+    #     bot:User = mergeApp.get_me()
+    #     bot_username = bot.username
     try:
         with userBot:
             userBot.send_message(
