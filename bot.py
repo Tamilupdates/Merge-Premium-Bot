@@ -398,11 +398,11 @@ async def files_handler(c: Client, m: Message):
 async def photo_handler(c: Client, m: Message):
     user = UserSettings(m.chat.id, m.from_user.first_name)
     if m.from_user.id != int(Config.OWNER):
-    if not user.allowed:
-        res = await m.reply_text(
-            text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Unfortunately you can't use me\n\n**🧑‍💻 Contact: @{Config.OWNER_USERNAME}** ",
-            quote=True,
-        )
+        if not user.allowed:
+            res = await m.reply_text(
+                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Unfortunately you can't use me\n\n**🧑‍💻 Contact: @{Config.OWNER_USERNAME}** ",
+                quote=True,
+            )
         del user
         return
     thumbnail = m.photo.file_id
