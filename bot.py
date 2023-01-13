@@ -331,9 +331,9 @@ async def files_handler(c: Client, m: Message):
             queueDB.get(user_id)["videos"].append(m.id)
             if len(queueDB.get(user_id)["videos"])==1:
                 reply_ = await editable.edit(
-                text="Now, Send all the audios you want to merge",
-                reply_markup=InlineKeyboardMarkup(
-                    bMaker.makebuttons(["Cancel"], ["cancel"])
+                    text="Now, Send all the audios you want to merge",
+                    reply_markup=InlineKeyboardMarkup(
+                        bMaker.makebuttons(["Cancel"], ["cancel"])
                 ),
             )
             replyDB.update({user_id: reply_.id})
