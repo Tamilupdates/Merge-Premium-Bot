@@ -725,9 +725,9 @@ except KeyError:
 
 
 if __name__ == "__main__":
-    # with mergeApp:
-    #    bot:User = mergeApp.get_me()
-    #    bot_username = bot.username
+    with mergeApp:
+        bot:User = mergeApp.get_me()
+        bot_username = bot.username
     try:
         with userBot:
             userBot.send_message(
