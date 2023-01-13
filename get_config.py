@@ -36,7 +36,7 @@ try:
     if len(UPSTREAM_BRANCH) == 0:
        raise TypeError
 except:
-    UPSTREAM_BRANCH = 'master'
+    UPSTREAM_BRANCH = None
 
 if UPSTREAM_REPO is not None:
     if os.path.exists('.git'):

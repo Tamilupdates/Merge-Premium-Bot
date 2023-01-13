@@ -66,7 +66,7 @@ class Progress:
             await self._client.stop_transmission()
 
         if round(diff % float(EDIT_SLEEP_TIME_OUT)) == 0 or current == total:
-            # if round(current / total * 100, 0) % 5 == 0:
+            if round(current / total * 100, 0) % 5 == 0:
             percentage = current * 100 / total
             speed = current / diff
             elapsed_time = round(diff) * 1000
@@ -118,7 +118,7 @@ class Progress:
 
 def humanbytes(size):
     # https://stackoverflow.com/a/49361727/4723940
-    # 2**10 = 1024
+    2**10 = 1024
     if not size:
         return ""
     power = 2**10

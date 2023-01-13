@@ -20,7 +20,7 @@ async def MergeVideo(input_file: str, user_id: int, message: Message, format_: s
     :param `format_`: Pass File Extension.
     :return: This will return Merged Video File Path
     """
-    output_vid = f"downloads/{str(user_id)}/[@yashoswalyo].{format_.lower()}"
+    output_vid = f"downloads/{str(user_id)}/[Video File].{format_.lower()}"
     file_generator_command = [
         "ffmpeg",
         "-f",
@@ -95,7 +95,7 @@ async def MergeSub(filePath: str, subPath: str, user_id):
             subTrack += 1
     muxcmd.append(f"-metadata:s:s:{subTrack}")
     subTrack += 1
-    subTitle = f"Track {subTrack} - tg@yashoswalyo"
+    subTitle = f"Track {subTrack}"
     muxcmd.append(f"title={subTitle}")
     muxcmd.append("-c:v")
     muxcmd.append("copy")
@@ -103,11 +103,11 @@ async def MergeSub(filePath: str, subPath: str, user_id):
     muxcmd.append("copy")
     muxcmd.append("-c:s")
     muxcmd.append("srt")
-    muxcmd.append(f"./downloads/{str(user_id)}/[@yashoswalyo]_softmuxed_video.mkv")
+    muxcmd.append(f"./downloads/{str(user_id)}/[Video File]_softmuxed_video.mkv")
     LOGGER.info("Muxing subtitles")
     subprocess.call(muxcmd)
     orgFilePath = shutil.move(
-        f"downloads/{str(user_id)}/[@yashoswalyo]_softmuxed_video.mkv", filePath
+        f"downloads/{str(user_id)}/[Video File]_softmuxed_video.mkv", filePath
     )
     return orgFilePath
 
@@ -147,7 +147,7 @@ def MergeSubNew(filePath: str, subPath: str, user_id, file_list):
         muxcmd.append("-map")
         muxcmd.append(f"{j}:s")
         muxcmd.append(f"-metadata:s:s:{subTrack}")
-        muxcmd.append(f"title=Track {subTrack+1} - tg@yashoswalyo")
+        muxcmd.append(f"title=Track {subTrack+1}")
         subTrack += 1
     muxcmd.append("-c:v")
     muxcmd.append("copy")
@@ -155,10 +155,10 @@ def MergeSubNew(filePath: str, subPath: str, user_id, file_list):
     muxcmd.append("copy")
     muxcmd.append("-c:s")
     muxcmd.append("srt")
-    muxcmd.append(f"./downloads/{str(user_id)}/[@yashoswalyo]_softmuxed_video.mkv")
+    muxcmd.append(f"./downloads/{str(user_id)}/[Video File]_softmuxed_video.mkv")
     LOGGER.info("Sub muxing")
     subprocess.call(muxcmd)
-    return f"downloads/{str(user_id)}/[@yashoswalyo]_softmuxed_video.mkv"
+    return f"downloads/{str(user_id)}/[Video File]_softmuxed_video.mkv"
 
 
 def MergeAudio(videoPath: str, files_list: list, user_id):
@@ -187,7 +187,7 @@ def MergeAudio(videoPath: str, files_list: list, user_id):
         muxcmd.append("-map")
         muxcmd.append(f"{j}:a")
         muxcmd.append(f"-metadata:s:a:{audioTracks}")
-        muxcmd.append(f"title=Track {audioTracks+1} - tg@yashoswalyo")
+        muxcmd.append(f"title=Track {audioTracks+1}")
         audioTracks += 1
     muxcmd.append(f"-disposition:s:a:{fAudio}")
     muxcmd.append("default")
@@ -199,12 +199,12 @@ def MergeAudio(videoPath: str, files_list: list, user_id):
     muxcmd.append("copy")
     muxcmd.append("-c:s")
     muxcmd.append("copy")
-    muxcmd.append(f"downloads/{str(user_id)}/[@yashoswalyo]_export.mkv")
+    muxcmd.append(f"downloads/{str(user_id)}/[Video File]_export.mkv")
 
     LOGGER.info(muxcmd)
     process = subprocess.call(muxcmd)
     LOGGER.info(process)
-    return f"downloads/{str(user_id)}/[@yashoswalyo]_export.mkv"
+    return f"downloads/{str(user_id)}/[Video File]_export.mkv"
 
 
 async def cult_small_video(video_file, output_directory, start_time, end_time, format_):
@@ -283,7 +283,7 @@ async def take_screen_shot(video_file, output_directory, ttl):
             "1",
             out_put_file_name,
         ]
-        # width = "90"
+        width = "90"
         process = await asyncio.create_subprocess_exec(
             *file_genertor_command,
             # stdout must a pipe to be accessible as process.stdout
@@ -311,8 +311,8 @@ async def extractAudios(path_to_file, user_id):
     if not os.path.exists(dir_name + "/extract"):
         os.makedirs(dir_name + "/extract")
     videoStreamsData = ffmpeg.probe(path_to_file)
-    # with open("data.json",'w') as f:
-    #     f.write(json.dumps(videoStreamsData))
+    with open("data.json",'w') as f:
+        f.write(json.dumps(videoStreamsData))
     extract_dir = dir_name + "/extract"
     audios = []
     for stream in videoStreamsData.get("streams"):
@@ -368,8 +368,8 @@ async def extractSubtitles(path_to_file, user_id):
     if not os.path.exists(dir_name + "/extract"):
         os.makedirs(dir_name + "/extract")
     videoStreamsData = ffmpeg.probe(path_to_file)
-    # with open("data.json",'w') as f:
-    #     f.write(json.dumps(videoStreamsData))
+    with open("data.json",'w') as f:
+        f.write(json.dumps(videoStreamsData))
     extract_dir = dir_name + "/extract"
     subtitles = []
     for stream in videoStreamsData.get("streams"):
@@ -425,3 +425,5 @@ async def extractSubtitles(path_to_file, user_id):
     else:
         LOGGER.warning(f"{extract_dir} is empty")
         return None
+
+
