@@ -63,7 +63,7 @@ class UserSettings(object):
         self.thumbnail = None
         self.banned:bool = False
         self.get()
-        def __init__(self,uid:int,name:str,merge_mode:int=1,edit_metadata=False) -> None:
+        # def __init__(self,uid:int,name:str,merge_mode:int=1,edit_metadata=False) -> None:
 
     def get(self):
         try:
