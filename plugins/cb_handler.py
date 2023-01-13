@@ -31,8 +31,8 @@ from plugins.usettings import userSettings
 
 @Client.on_callback_query()
 async def callback_handler(c: Client, cb: CallbackQuery):
-        await cb_handler.cb_handler(c, cb)
-async def cb_handler(c: Client, cb: CallbackQuery):
+#         await cb_handler.cb_handler(c, cb)
+#  async def cb_handler(c: Client, cb: CallbackQuery):
     if cb.data == "merge":
         await cb.message.edit(
             text="Where do you want to upload?",
