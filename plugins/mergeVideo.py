@@ -30,7 +30,7 @@ async def mergeNow(c: Client, cb: CallbackQuery, new_file_name: str):
     # list_message_ids = queueDB.get(cb.from_user.id)["videos"]
     list_message_ids.sort()
     list_subtitle_ids = queueDB.get(cb.from_user.id)["subtitles"]
-    list_subtitle_ids.sort()
+    # list_subtitle_ids.sort()
     LOGGER.info(Config.IS_PREMIUM)
     LOGGER.info(f"Videos: {list_message_ids}")
     LOGGER.info(f"Subs: {list_subtitle_ids}")
