@@ -173,7 +173,7 @@ chat_id=cb.from_user.id, message_ids=list_message_ids ):
         thumb_id = user.thumbnail
         if thumb_id is None:
             raise Exception
-        thumb_id = await database.getThumb(cb.from_user.id)
+        # thumb_id = await database.getThumb(cb.from_user.id)
         video_thumbnail = f"downloads/{str(cb.from_user.id)}_thumb.jpg"
         await c.download_media(message=str(thumb_id), file_name=video_thumbnail)
     except Exception as err:
