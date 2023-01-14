@@ -31,8 +31,8 @@ from plugins.usettings import userSettings
 
 @Client.on_callback_query()
 async def callback_handler(c: Client, cb: CallbackQuery):
-#         await cb_handler.cb_handler(c, cb)
-#  async def cb_handler(c: Client, cb: CallbackQuery):
+    #     await cb_handler.cb_handler(c, cb)
+    # async def cb_handler(c: Client, cb: CallbackQuery):
     if cb.data == "merge":
         await cb.message.edit(
             text="Where do you want to upload?",
@@ -41,7 +41,8 @@ async def callback_handler(c: Client, cb: CallbackQuery):
                     [
                         InlineKeyboardButton(
                             "📤 To Telegram", callback_data="to_telegram"
-                        )
+                        ),
+                        InlineKeyboardButton("🌫️ To Drive", callback_data="to_drive"),
                     ],
                     [InlineKeyboardButton("⛔ Cancel ⛔", callback_data="cancel")],
                 ]
@@ -67,7 +68,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
             return
         UPLOAD_TO_DRIVE.update({f"{cb.from_user.id}": True})
         await cb.message.edit(
-            text="Okay I'll upload to drive\nDo you want to rename? Default file name is **Video_merged.mkv**",
+            text="Okay I'll upload to drive\nDo you want to rename? Default file name is **[@yashoswalyo]_merged.mkv**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -99,7 +100,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
     elif cb.data == "document":
         UPLOAD_AS_DOC.update({f"{cb.from_user.id}": True})
         await cb.message.edit(
-            text="Do you want to rename? Default file name is **Video_merged.mkv**",
+            text="Do you want to rename? Default file name is **[@yashoswalyo]_merged.mkv**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -115,7 +116,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
     elif cb.data == "video":
         UPLOAD_AS_DOC.update({f"{cb.from_user.id}": False})
         await cb.message.edit(
-            text="Do you want to rename? Default file name is **Video_merged.mkv**",
+            text="Do you want to rename? Default file name is **[@yashoswalyo]_merged.mkv**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -145,7 +146,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
         user = UserSettings(cb.from_user.id, cb.from_user.first_name)
         if "YES" in cb.data:
             await cb.message.edit(
-                "Current filename: **Video_merged.mkv**\n\nSend me new file name without extension: You have 1 minute"
+                "Current filename: **[@yashoswalyo]_merged.mkv**\n\nSend me new file name without extension: You have 1 minute"
             )
             res: Message = await c.listen(
                 cb.message.chat.id, filters=filters.text, timeout=150
@@ -163,7 +164,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
             return
         if "NO" in cb.data:
             new_file_name = (
-                f"downloads/{str(cb.from_user.id)}/Video_merged.mkv"
+                f"downloads/{str(cb.from_user.id)}/[@yashoswalyo]_merged.mkv"
             )
             if user.merge_mode == 1:
                 await mergeNow(c, cb, new_file_name)
@@ -421,4 +422,3 @@ async def callback_handler(c: Client, cb: CallbackQuery):
                 await streamsExtractor(c,cb,media_mid,exAudios=True,exSubs=True)
         except Exception as e:
             LOGGER.error(e)
-

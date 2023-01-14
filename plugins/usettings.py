@@ -14,7 +14,6 @@ async def f1(c: mergeApp, m: Message):
         replay, m.from_user.id, m.from_user.first_name, m.from_user.last_name, usettings
     )
 
-
 async def userSettings(
     editable: Message,
     uid: int,
@@ -76,6 +75,6 @@ async def userSettings(
         usettings.edit_metadata = False
         usettings.thumbnail = None
         await userSettings(editable, uid, fname, lname, usettings)
-    await asyncio.sleep(10)
-    await c.delete_messages(chat_id=editable.chat.id, message_ids=[res.id-1,res.id])
+    # await asyncio.sleep(10)
+    # await c.delete_messages(chat_id=editable.chat.id, message_ids=[res.id-1,res.id])
     return
