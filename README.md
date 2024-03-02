@@ -1,19 +1,7 @@
-# MERGE-BOT
-### PR's Welcomed
-<br>
+# PREMIUM-MERGE-BOT
 
-![GitHub Repo stars](https://img.shields.io/github/stars/yashoswalyo/MERGE-BOT?color=blue&style=flat)
-![GitHub forks](https://img.shields.io/github/forks/yashoswalyo/MERGE-BOT?color=green&style=flat)
-![GitHub issues](https://img.shields.io/github/issues/yashoswalyo/MERGE-BOT)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/yashoswalyo/MERGE-BOT)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yashoswalyo/MERGE-BOT)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/yashoswalyo/MERGE-BOT)
-![GitHub contributors](https://img.shields.io/github/contributors/yashoswalyo/MERGE-BOT?style=flat)
-![GitHub repo size](https://img.shields.io/github/repo-size/yashoswalyo/MERGE-BOT?color=red)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/yashoswalyo/MERGE-BOT)
-
-An Telegram Bot By [Yash Oswal](https://t.me/yashoswalyo) To Merge multiple Videos in Telegram into single video. <br>
-Bugs should be reported at: [Telegram Group](https://t.me/yo_codes_support)
+## Deploy Heroku
+[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Tamilupdates/Merge-Premium-Bot)
 
 ```diff
 - TODO's:
@@ -35,11 +23,6 @@ Bugs should be reported at: [Telegram Group](https://t.me/yo_codes_support)
 + Log Channel to store all merged videos
 
 ```
-## Deploy Tutorial : 
-[![Watch the video](https://img.youtube.com/vi/H-xVk_4zccs/hqdefault.jpg)](https://youtu.be/H-xVk_4zccs)
-
-## Deploy(at your own risk) :
-<p><a href="https://dashboard.heroku.com/new?template=https://github.com/tamilupdates/merge-premium-bot"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="200""/></a></p>
 
 ### OR
 Goto `settings > actions > secret > New Repository Secret` <br>
@@ -48,12 +31,6 @@ Add `HEROKU_API_KEY` <br>
 Add `HEROKU_APP_NAME` <br>
 Add `CONFIG_FILE_URL` <br>
 Goto `Actions > Manual Deploy To Heroku > Run Workflow`
-
-### OR
-Coming soon
-## Tutorial to get MongoDB URI:
-[![Watch the video](https://img.youtube.com/vi/OfQ7xxMylV4/hqdefault.jpg)](https://youtu.be/OfQ7xxMylV4)
-
 
 ## Config File Variables :
 1. `TELEGRAM_API` : User Account Telegram API_ID, get it from my.telegram.org
