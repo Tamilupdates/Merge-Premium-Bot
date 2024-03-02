@@ -7,11 +7,12 @@
 		"merge",
 		"bot"
 	],
+	
 	"repository": "https://github.com/Tamilupdates/Merge-Premium-Bot",
 	"stack": "container",
 	"env": {
 		"CONFIG_FILE_URL": {
-			"description": "Make Config on gist and paste raw link "
+			"description": "Config File URL"
 		}
 	},
 	"formation": {
