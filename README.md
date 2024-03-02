@@ -1,6 +1,4 @@
-# PREMIUM-MERGE-BOT
-
-## Deploy Heroku
+## Merge Premium Bot
 [![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Tamilupdates/Merge-Premium-Bot)
 
 ```diff
@@ -24,14 +22,6 @@
 
 ```
 
-### OR
-Goto `settings > actions > secret > New Repository Secret` <br>
-Add `HEROKU_EMAIL` <br>
-Add `HEROKU_API_KEY` <br>
-Add `HEROKU_APP_NAME` <br>
-Add `CONFIG_FILE_URL` <br>
-Goto `Actions > Manual Deploy To Heroku > Run Workflow`
-
 ## Config File Variables :
 1. `TELEGRAM_API` : User Account Telegram API_ID, get it from my.telegram.org
 2. `API_HASH` : User Account Telegram API_HASH, get it from my.telegram.org
@@ -42,7 +32,6 @@ Goto `Actions > Manual Deploy To Heroku > Run Workflow`
 7. `PASSWORD`: Enter password to login bot
 8. `LOGCHANNEL`: Log channel will store all users merged videos ("-100" + "channel Id")
 9. `USER_SESSION_STRING`: Premium account session string to upload upto 4GB (requires `LOGCHANNEL`)
-
 
 ## Commands (add via @botfather) :
 ```
@@ -61,21 +50,10 @@ broadcast - (admin only) Broadcast message to bot users
 stats - (admin only) check bots stats
 ```
 
-## Self Host
-```sh
-$ git clone https://github.com/tamilupdates/merge-premium-bot.git
-$ cd MERGE-BOT
-$ sudo apt-get install python3 python3-pip ffmpeg
-$ pip3 install -U pip
-$ pip3 install -U -r requirements.txt
-# <fill config.env correctly by looking at sample_config.env>
-$ bash start.sh
-```
-
 ## License
 ```
-Merge Bot, Telegram Video Merge Bot
-Copyright (c) 2021  Yash Oswal <https://github.com/tamilupdates>
+Merge Premium-Bot, Telegram Video-Premium Merge-Bot
+Copyright (c) 2021  Tamil Updates <https://github.com/tamilupdates>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -90,10 +68,3 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>
 ```
-
-## Credits
-
-- [Me](https://github.com/tamilupdates) for [Nothing](https://github.com/tamilupdates/merge-premium-bot) 😬
-- [Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram) ❤️
-- [Abir Hasan](https://github.com/AbirHasan2005) for his wonderful [code](https://github.com/AbirHasan2005/VideoMerge-Bot) ❤️
-- [Jigarvarma2005](https://github.com/Jigarvarma2005) and [SpechIDE](https://t.me/spechide) for helping me to fix bugs 🤓
