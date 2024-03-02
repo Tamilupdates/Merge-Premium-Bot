@@ -1,0 +1,6 @@
+__pycache__
+*session*
+downloads
+userdata
+config.env
+mergebotlog.txt
