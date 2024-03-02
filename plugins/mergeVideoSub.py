@@ -72,8 +72,8 @@ async def mergeSub(c: Client, cb: CallbackQuery, new_file_name: str):
             n+=1
             if gDict[cb.message.chat.id] and cb.message.id in gDict[cb.message.chat.id]:
                 return
-            await cb.message.edit(f"Downloaded Sucessfully ... `{media.file_name}`")
-            LOGGER.info(f"Downloaded Sucessfully ... {media.file_name}")
+            await cb.message.edit(f"<b>✅ Downloaded Sucessfully</b> `{media.file_name}`")
+            LOGGER.info(f"<b>✅ Downloaded Sucessfully</b> {media.file_name}")
             await asyncio.sleep(5)
         except Exception as downloadErr:
             LOGGER.warning(f"Failed to download Error: {downloadErr}")
