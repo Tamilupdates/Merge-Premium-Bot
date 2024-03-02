@@ -28,7 +28,7 @@ async def streamsExtractor(c: Client, cb:CallbackQuery ,media_mid, exAudios=Fals
     try:
         c_time = time.time()
         prog = Progress(cb.from_user.id, c, cb.message)
-        progress=f"🚀 Downloading: `{media.file_name}`"
+        progress=f"<b>🚀 Downloading:</b> `{media.file_name}`"
         file_dl_path = await c.download_media(
             message=media,
             file_name=f"downloads/{str(cb.from_user.id)}/{str(omess.id)}/vid.mkv",  # fix for filename with single quote(') in name

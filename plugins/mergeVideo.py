@@ -46,8 +46,8 @@ async def mergeNow(c: Client, cb: CallbackQuery, new_file_name: str):
     for i in await c.get_messages(
 chat_id=cb.from_user.id, message_ids=list_message_ids ):
         media = i.video or i.document
-        await cb.message.edit(f"📥 Starting Download of ... `{media.file_name}`")
-        LOGGER.info(f"📥 Starting Download of ... {media.file_name}")
+        await cb.message.edit(f"<b>📥 Starting Download: </b> `{media.file_name}`")
+        LOGGER.info(f"<b>📥 Starting Download: </b> {media.file_name}")
         await asyncio.sleep(5)
         file_dl_path = None
         sub_dl_path = None
@@ -58,7 +58,7 @@ chat_id=cb.from_user.id, message_ids=list_message_ids ):
                 message=media,
                 file_name=f"downloads/{str(cb.from_user.id)}/{str(i.id)}/vid.mkv",  # fix for filename with single quote(') in name
                 progress=prog.progress_for_pyrogram,
-                progress_args=(f"🚀 Downloading: `{media.file_name}`", c_time, f"\n**Downloading: {n}/{all}**"),
+                progress_args=(f"<b>🚀 Downloading:</b> `{media.file_name}`", c_time, f"\n**Downloading: {n}/{all}**"),
             )
             n+=1
             if gDict[cb.message.chat.id] and cb.message.id in gDict[cb.message.chat.id]:

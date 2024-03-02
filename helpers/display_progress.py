@@ -76,7 +76,7 @@ class Progress:
             elapsed_time = TimeFormatter(milliseconds=elapsed_time)
             estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-            progress = "\n<code>[{0}{1}] {2}%</code>\n".format(
+            progress = "\n<b>[{0}{1}] {2}%</b>\n".format(
                 "".join(
                     [FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]
                 ),
@@ -91,7 +91,7 @@ class Progress:
             # cpu = "{psutil.cpu_percent()}%"
             tmp = (
                 progress
-                + "\n**⌧ Total 🗃:**` 〚{1}〛`\n**⌧ Done ✅ :**` 〚{0}〛`\n**⌧ Speed 📊 :** ` 〚{2}/s〛`\n**⌧ ETA 🔃 :**` 〚{3}〛`\n {4}".format(
+                + "\n**🗃 Total :**` 〚{1}〛`\n**✅ Done :**` 〚{0}〛`\n**📊 Speed :** ` 〚{2}/s〛`\n**🔃 ETA :**` 〚{3}〛`\n {4}".format(
                     humanbytes(current),
                     humanbytes(total),
                     humanbytes(speed),
