@@ -13,7 +13,7 @@
 #  2. Then send videos to merge, after you tap "Merge Now", upload to drive option will available.
 + Merged video preserves all streams of the first video you send (i.e. all audiotracks/subtitles)
 
-+ Merge Upto 20 videos in one 
++ Merge Upto 10 videos in one 
 + Upload as document/video 
 + Custom thumbnail support
 + Users can login to bot using password
